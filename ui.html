@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        label {
+            margin-right: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<label>
+    <input type="checkbox" id="add-px-checkbox" checked />
+    Добавить 'px' к значениям переменных группы UI Sizes
+</label>
+<button id="export-btn">Экспортировать CSS</button>
+<button id="copy-btn" style="display: none;">Копировать стили</button>
+<a id="download-link" href="#" download="AstrumTransitus.css" style="display: none;">Скачать CSS файл</a>
+
+<textarea id="output" placeholder="Здесь будет ваш экспортированный CSS..."></textarea>
+
+<script>
+    document.getElementById('export-btn').onclick = () => {
+        const addPx = document.getElementById('add-px-checkbox').checked;
+        parent.postMessage({ pluginMessage: { type: 'export-css', addPx } }, '*');
+    };
+
+    document.getElementById('copy-btn').onclick = () => {
+        const cssText = document.getElementById('output').value;
+
+        // Проверяем поддержку API clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(cssText)
+                .then(() => {
+                    alert('Стили скопированы в буфер обмена');
+                })
+                .catch(err => {
+                    alert('Ошибка при копировании стилей: ' + err);
+                });
+        } else {
+            // Альтернативный способ копирования, если clipboard API не поддерживается
+            const textarea = document.createElement('textarea');
+            textarea.value = cssText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('CSS styles have been retrieved from the Warp, and all traces of heresy have been purged');
+        }
+    };
+
+    window.onmessage = (event) => {
+        const message = event.data.pluginMessage;
+        if (message.type === 'exported-css') {
+            const outputField = document.getElementById('output');
+            const cssText = message.css;
+
+            // Записываем экспортированный CSS в textarea
+            outputField.value = cssText;
+
+            // Показываем кнопку "Копировать стили" и ссылку на скачивание файла
+            document.getElementById('copy-btn').style.display = 'inline-block';
+            document.getElementById('download-link').style.display = 'inline-block';
+
+            // Создаём Blob для скачивания файла
+            const blob = new Blob([cssText], { type: 'text/css' });
+            const url = URL.createObjectURL(blob);
+
+            // Обновляем ссылку для скачивания файла
+            const downloadLink = document.getElementById('download-link');
+            downloadLink.href = url;
+        }
+    };
+</script>
+</body>
+</html>
