@@ -5,22 +5,92 @@
         body {
             font-family: sans-serif;
         }
+
         label {
             margin-right: 10px;
         }
+
         textarea {
             width: 100%;
             height: 200px;
             margin-top: 10px;
         }
+
         button {
             margin: 5px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 8px 0;
+            height: 32px;
+        }
+
+        .logo svg {
+            height: 100%;
+            /*object-fit: contain;*/
+        }
+
+        .at__line {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: start;
+            gap: 4px;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #192A3E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    .at__header {}
+    .at__main {}
+    .at__footer {
+        padding: 4px;
+        text-align: right;
+        font-size: 12px;
+        color: #666666;
+    }
+        .at__checkbox {
+            background-color: #192A3E;
         }
     </style>
 </head>
 <body>
-<label>
-    <input type="checkbox" id="add-px-checkbox" checked />
+<header class="at__header">
+    <div class="logo">
+        <svg viewBox="0 0 141 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M110.5 59C126.24 59 139 46.2401 139 30.5C139 14.7599 126.24 2 110.5 2C94.7599 2 82 14.7599 82 30.5C82 46.2401 94.7599 59 110.5 59Z"
+                  stroke="#192A3E" stroke-width="3.5"/>
+            <path d="M130.172 29.0333L124.884 27.8627C119.238 26.6133 114.825 22.2034 113.576 16.5543L112.405 11.2665C111.955 9.22823 109.049 9.22823 108.596 11.2665L107.425 16.5543C106.176 22.2009 101.766 26.6133 96.1169 27.8627L90.8291 29.0333C88.7908 29.4837 88.7908 32.3896 90.8291 32.8426L96.1169 34.0131C101.763 35.2626 106.176 39.6724 107.425 45.3216L108.596 50.6094C109.046 52.6476 111.952 52.6476 112.405 50.6094L113.576 45.3216C114.825 39.675 119.235 35.2626 124.884 34.0131L130.172 32.8426C132.21 32.3922 132.21 29.4862 130.172 29.0333Z"
+                  stroke="#192A3E" stroke-width="3.5"/>
+            <path d="M21 30.5C21 27.9804 22.0009 25.5641 23.7825 23.7825C25.5641 22.0009 27.9804 21 30.5 21C33.0196 21 35.4359 22.0009 37.2175 23.7825C38.9991 25.5641 40 27.9804 40 30.5C40 33.0196 38.9991 35.4359 37.2175 37.2175C35.4359 38.9991 33.0196 40 30.5 40C27.9804 40 25.5641 38.9991 23.7825 37.2175C22.0009 35.4359 21 33.0196 21 30.5V30.5Z"
+                  stroke="#192A3E" stroke-width="3.5"/>
+            <path d="M2 49.5C2 46.9804 3.00089 44.5641 4.78249 42.7825C6.56408 41.0009 8.98044 40 11.5 40H21V49.5C21 52.0196 19.9991 54.4359 18.2175 56.2175C16.4359 57.9991 14.0196 59 11.5 59C8.98044 59 6.56408 57.9991 4.78249 56.2175C3.00089 54.4359 2 52.0196 2 49.5Z"
+                  stroke="#192A3E" stroke-width="3.5"/>
+            <path d="M21 2V21H30.5C33.0196 21 35.4359 19.9991 37.2175 18.2175C38.9991 16.4359 40 14.0196 40 11.5C40 8.98044 38.9991 6.56408 37.2175 4.78249C35.4359 3.00089 33.0196 2 30.5 2L21 2Z"
+                  stroke="#192A3E" stroke-width="3.5"/>
+            <path d="M2 11.5C2 14.0196 3.00089 16.4359 4.78249 18.2175C6.56408 19.9991 8.98044 21 11.5 21H21V2H11.5C8.98044 2 6.56408 3.00089 4.78249 4.78249C3.00089 6.56408 2 8.98044 2 11.5Z"
+                  stroke="#192A3E" stroke-width="3.5"/>
+            <path d="M2 30.5C2 33.0196 3.00089 35.4359 4.78249 37.2175C6.56408 38.9991 8.98044 40 11.5 40H21V21H11.5C8.98044 21 6.56408 22.0009 4.78249 23.7825C3.00089 25.5641 2 27.9804 2 30.5Z"
+                  stroke="#192A3E" stroke-width="3.5"/>
+            <path d="M56 4L66.5 30.5L56 57" stroke="#192A3E" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+    </div>
+    <div>
+</header>
+<main class="at__main">
+<label class="at__line">
+    <input type="checkbox" id="add-px-checkbox" class="at__checkbox" checked/>
     Добавить 'px' к значениям переменных группы UI Sizes
 </label>
 <button id="export-btn">Экспортировать CSS</button>
@@ -28,11 +98,14 @@
 <a id="download-link" href="#" download="AstrumTransitus.css" style="display: none;">Скачать CSS файл</a>
 
 <textarea id="output" placeholder="Здесь будет ваш экспортированный CSS..."></textarea>
-
+</main>
+<footer class="at__footer">
+    A plugin to export styles from Figma into Astrum CSS, purified and ready to serve the Emperor.
+</footer>
 <script>
     document.getElementById('export-btn').onclick = () => {
         const addPx = document.getElementById('add-px-checkbox').checked;
-        parent.postMessage({ pluginMessage: { type: 'export-css', addPx } }, '*');
+        parent.postMessage({pluginMessage: {type: 'export-css', addPx}}, '*');
     };
 
     document.getElementById('copy-btn').onclick = () => {
@@ -73,7 +146,7 @@
             document.getElementById('download-link').style.display = 'inline-block';
 
             // Создаём Blob для скачивания файла
-            const blob = new Blob([cssText], { type: 'text/css' });
+            const blob = new Blob([cssText], {type: 'text/css'});
             const url = URL.createObjectURL(blob);
 
             // Обновляем ссылку для скачивания файла
