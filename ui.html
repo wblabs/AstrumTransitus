@@ -39,29 +39,93 @@
             font-size: 12px;
             color: #666;
             display: flex;
-            align-items: start;
+            align-items: center;
             gap: 4px;
             padding: 8px;
         }
 
         button {
-            padding: 8px 16px;
+            padding: 0 16px;
             background-color: #192A3E;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin: 0;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
-    .at__header {}
-    .at__main {}
-    .at__footer {
-        padding: 4px;
-        text-align: right;
-        font-size: 12px;
-        color: #666666;
-    }
+
+        button:hover {
+            background-color: #0D1520;
+        }
+
+        button svg {
+            height: 16px;
+            width: 16px;
+        }
+
+        a.btn-link {
+            color: #192A3E;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0;
+            padding: 0 6px;
+            text-decoration: none;
+        }
+
+        a.btn-link:hover {
+            text-decoration: underline;
+        }
+
+        .at__header {
+            padding: 0 0 0 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .at__main {
+        }
+
+        .at__footer {
+            padding: 4px;
+            text-align: right;
+            font-size: 10px;
+            color: #666666;
+        }
+
         .at__checkbox {
             background-color: #192A3E;
+        }
+
+        .fb {
+            font-weight: bold;
+        }
+
+        .btn-pan {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            margin: 8px 0;
+            gap: 12px;
+        }
+
+        .at__textarea {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            padding: 8px;
+            height: 210px;
+            margin: 0;
+        }
+
+        .at__textarea::placeholder {
+            color: #999;
         }
     </style>
 </head>
@@ -86,18 +150,25 @@
             <path d="M56 4L66.5 30.5L56 57" stroke="#192A3E" stroke-width="3.5" stroke-linecap="round"/>
         </svg>
     </div>
-    <div>
+
 </header>
 <main class="at__main">
-<label class="at__line">
-    <input type="checkbox" id="add-px-checkbox" class="at__checkbox" checked/>
-    Добавить 'px' к значениям переменных группы UI Sizes
-</label>
-<button id="export-btn">Экспортировать CSS</button>
-<button id="copy-btn" style="display: none;">Копировать стили</button>
-<a id="download-link" href="#" download="AstrumTransitus.css" style="display: none;">Скачать CSS файл</a>
+    <label class="at__line">
+        <input type="checkbox" id="add-px-checkbox" class="at__checkbox" checked/>
+        Add <span class="fb">‘px’</span> to the values of the UI Sizes variable group.
+    </label>
+    <div class="btn-pan">
+        <button id="export-btn">Start export CSS</button>
+        <button id="copy-btn" style="display: none;">
+            Copy styles
+        </button>
+        <a id="download-link" href="#" download="AstrumTransitus.css" class="btn-link" style="display: none;">Download
+            as CSS</a>
 
-<textarea id="output" placeholder="Здесь будет ваш экспортированный CSS..."></textarea>
+    </div>
+
+    <textarea id="output" class="at__textarea"
+              placeholder="Behold, your sacred CSS export awaits, forged in the fires of the Machine God…"></textarea>
 </main>
 <footer class="at__footer">
     A plugin to export styles from Figma into Astrum CSS, purified and ready to serve the Emperor.

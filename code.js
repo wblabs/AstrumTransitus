@@ -172,7 +172,7 @@ async function exportGlobalVariablesToCSS(addPx) {
 }
 
 // Отображаем интерфейс с высотой 400px
-figma.showUI(__html__, { width: 300, height: 400 });
+figma.showUI(__html__, { width: 480, height: 400 });
 
 figma.ui.onmessage = async (msg) => {
     console.log('Получено сообщение от UI:', msg); // Лог для отладки
